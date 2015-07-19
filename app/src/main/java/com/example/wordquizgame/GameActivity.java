@@ -1,15 +1,18 @@
 package com.example.wordquizgame;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -73,7 +76,30 @@ public class GameActivity extends ActionBarActivity {
     }
 
     private void getImageFileName() {
-        
+        String[] categories = new String[] {
+                "animals", "body", "colors", "numbers", "objects"
+        };
+
+        AssetManager assets = getAssets();
+
+        for (String category : categories) {
+            try {
+                String[] fileNames = assets.list(category);
+
+                for (String fileName : fileNames) {
+                    fileNameList.add(fileName.replace(".png", ""));
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                Log.e(TAG, "Error listing filenames in " + category);
+            }
+        }
+
+        Log.i(TAG, "***** รายชื่อไฟล์ทั้งหมด *****");
+        for (String fileName: fileNameList) {
+            Log.i(TAG, fileName);
+        }
     }
 
     @Override
