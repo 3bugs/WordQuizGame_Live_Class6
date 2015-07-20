@@ -18,7 +18,12 @@
         </activity>
         <activity
             android:name=".GameActivity"
-            android:label="@string/title_activity_game" >
+            android:label="@string/title_activity_game"
+            android:theme="@style/FullScreen" >
+        </activity>
+        <activity
+            android:name=".HighScoreActivity"
+            android:label="@string/title_activity_high_score" >
         </activity>
     </application>
 
